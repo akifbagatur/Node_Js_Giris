@@ -26,8 +26,7 @@ app.use(express.urlencoded({ extended: false })); // Gelen HTTP isteklerinin gö
 app.use(cookieParser()); // cookie-parser middleware'ini kullanarak HTTP isteklerindeki çerezleri ayrıştırır. Bu sayede, gelen isteklerdeki çerezlere req.cookies üzerinden kolayca erişebilirsiniz. Ayrıca, çerezleri oluşturmak ve göndermek için de kullanılabilir.
 app.use(express.static(path.join(__dirname, 'public'))); // Uygulamanın statik dosyalarını (örneğin, CSS, JavaScript, resimler) sunmak için kullanılır. Bu örnekte, __dirname ile 'public' dizini birleştirilerek statik dosyaların tam yolu oluşturulur. Bu sayede, uygulama bu dizindeki dosyalara doğrudan erişim sağlar ve bu dosyaları istemcilere sunar.
 
-app.use('/', indexRouter); // indexRouter'ı kök ("/") rotasına bağlar. Bu sayede, uygulamaya gelen istekler kök rotasına yönlendirilir ve indexRouter tarafından tanımlanan rotalar işlenir. Örneğin, ana sayfa ("/") gibi rotalar burada tanımlanabilir ve bu rotalara gelen istekler için uygun yanıtlar oluşturulabilir.
-app.use('/users', usersRouter); // usersRouter'ı "/users" rotasına bağlar. Bu sayede, uygulamaya gelen istekler "/users" rotasına yönlendirilir ve usersRouter tarafından tanımlanan rotalar işlenir. Örneğin, kullanıcı kayıt, giriş veya profil gibi işlemlerle ilgili rotalar burada tanımlanabilir ve bu rotalara gelen istekler için uygun yanıtlar oluşturulabilir.
+app.use("/api", require("./routes/index")); // Uygulamanın ana rotalarını tanımlayan index.js dosyasını kullanır. Bu sayede, uygulama bu dosyada tanımlanan rotalara gelen istekleri işleyebilir ve uygun yanıtlar oluşturabilir. Örneğin, ana sayfa ("/") gibi rotalar burada tanımlanabilir ve bu rotalara gelen istekler için uygun yanıtlar oluşturulabilir.
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
